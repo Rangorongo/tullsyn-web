@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tullsyn — Era tullfakturor döljer pengar. Vi hittar dem.</title>
+<meta name="description" content="Tullsyn granskar era importfakturor mot EU:s tulltaxa och hittar felklassificeringar, missade frihandelsavtal och överbetald tull. Betala bara när vi hittar pengar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="wordmark">TULLSYN</a>
+    <nav class="header-nav">
+      <a href="#sa-funkar-det">Så funkar det</a>
+      <a href="#pris">Pris</a>
+      <a href="#fragor">Vanliga frågor</a>
+    </nav>
+    <a href="mailto:romeo.roudneshin@gmail.com?subject=Provgranskning%20%E2%80%94%20Tullsyn&body=Hej!%0A%0AVi%20vill%20testa%20en%20kostnadsfri%20provgranskning.%0A%0AF%C3%B6retag:%20%0AKontaktperson:%20%0A" class="btn btn-dark btn-small">Provgranskning</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="badge">Betala bara när vi hittar pengar</span>
+      <h1>Era tullfakturor döljer pengar.<br>Vi hittar dem.</h1>
+      <p class="lead">AI-granskning mot EU:s tulltaxa hittar felklassificeringar, missade frihandelsavtal och räknefel — och tull går att återkräva upp till tre år bakåt.</p>
+      <div class="hero-cta">
+        <a href="mailto:romeo.roudneshin@gmail.com?subject=Provgranskning%20%E2%80%94%20Tullsyn&body=Hej!%0A%0AVi%20vill%20testa%20en%20kostnadsfri%20provgranskning.%0A%0AF%C3%B6retag:%20%0AKontaktperson:%20%0A" class="btn btn-dark">Skicka 3 fakturor gratis</a>
+        <span class="cta-note">Svar inom 48 timmar</span>
+      </div>
+    </div>
+
+    <div class="demo-card reveal" aria-label="Animerad demonstration av en tullgranskning">
+      <div class="demo-header">
+        <span class="demo-title">Granskning pågår</span>
+        <span class="demo-status" id="demo-status">rad 0 av 5</span>
+      </div>
+      <div id="demo-rows"></div>
+      <div class="demo-footer">
+        <span class="demo-label">Möjlig återbetalning</span>
+        <span class="demo-sum" id="demo-sum">0,00 kr</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="problemet">
+  <div class="container">
+    <h2 class="reveal">Tre skäl till att importföretag betalar för mycket</h2>
+    <div class="card-grid">
+      <div class="card reveal">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6l10 10-6 6L4 10z"/><circle cx="8.5" cy="8.5" r="1.2"/></svg>
+        <h3>Felklassificerade varor</h3>
+        <p>En enda felaktig HS-kod kan betyda fel tullsats på varenda leverans — i åratal, utan att någon märker det.</p>
+      </div>
+      <div class="card reveal">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 15l6-6"/><circle cx="9.5" cy="9.5" r="0.9"/><circle cx="14.5" cy="14.5" r="0.9"/></svg>
+        <h3>Outnyttjade frihandelsavtal</h3>
+        <p>EU:s avtal med Japan, Vietnam med flera ger ofta 0 % tull — men bara om det yrkas. Många betalar full tullsats i onödan.</p>
+      </div>
+      <div class="card reveal">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>Ingen hinner granska</h3>
+        <p>Hundratals fakturarader i månaden och en tulltaxa på 145 000 rader — manuell kontroll av allt är omöjlig.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tinted" id="sa-funkar-det">
+  <div class="container">
+    <h2 class="reveal">Så funkar det</h2>
+    <div class="card-grid">
+      <div class="card reveal">
+        <span class="step-number">1</span>
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="M12 15V4"/><path d="M8 8l4-4 4 4"/></svg>
+        <h3>Skicka fakturor</h3>
+        <p>PDF räcker. Inga systembyten, inga installationer, ingen bindningstid.</p>
+      </div>
+      <div class="card reveal">
+        <span class="step-number">2</span>
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v2"/><path d="M20 16v2a2 2 0 0 1-2 2h-2"/><path d="M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M5 12h14"/></svg>
+        <h3>Vi granskar varje rad</h3>
+        <p>Mot EU:s officiella tulltaxa TARIC. Varje vara får en tydlig dom: grön, gul eller röd — med motivering.</p>
+      </div>
+      <div class="card reveal">
+        <span class="step-number">3</span>
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5a3.5 3.5 0 1 0 0 5"/><path d="M8.5 11h4"/><path d="M8.5 13h4"/></svg>
+        <h3>Ni får tillbaka pengar</h3>
+        <p>Vi dokumenterar fynden och driver återkraven tillsammans med er. Vi tar 25 % av det vi hittar — annars kostar det inget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="siffror">
+  <div class="container">
+    <div class="stat-grid">
+      <div class="stat reveal">
+        <span class="stat-value" data-count="100" data-suffix=" %">0</span>
+        <span class="stat-label">träffsäkerhet i vårt kontrollprov — 16 av 16 planterade fel hittades</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-value" data-count="3" data-suffix=" år">0</span>
+        <span class="stat-label">bakåt i tiden går överbetald tull att återkräva</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-value">TARIC</span>
+        <span class="stat-label">EU:s officiella tulltaxa är vårt facit — inte gissningar</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-value">GDPR</span>
+        <span class="stat-label">känsliga uppgifter maskeras innan någon AI-analys sker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="pris">
+  <div class="container center">
+    <h2 class="reveal">25 % av det vi hittar.<br>Hittar vi inget betalar ni inget.</h2>
+    <p class="lead-dark reveal">Ingen prenumeration. Inga systembyten. Ingen risk.</p>
+    <a href="mailto:romeo.roudneshin@gmail.com?subject=Provgranskning%20%E2%80%94%20Tullsyn&body=Hej!%0A%0AVi%20vill%20testa%20en%20kostnadsfri%20provgranskning.%0A%0AF%C3%B6retag:%20%0AKontaktperson:%20%0A" class="btn btn-light reveal">Starta provgranskningen</a>
+  </div>
+</section>
+
+<section class="section" id="fragor">
+  <div class="container narrow">
+    <h2 class="reveal">Vanliga frågor</h2>
+    <details class="faq reveal">
+      <summary>Vad händer med våra fakturor och data?</summary>
+      <p>Fakturorna behandlas konfidentiellt. Personuppgifter som e-postadresser maskeras automatiskt innan någon AI-analys sker, och ert material raderas på begäran. Vi säljer aldrig data vidare.</p>
+    </details>
+    <details class="faq reveal">
+      <summary>Vem sköter kontakten med Tullverket?</summary>
+      <p>Tullsyn hittar och dokumenterar felen med fullständiga underlag. Själva omprövningsansökan görs tillsammans med er — och vid behov med licensierat tullombud. Ni behåller full kontroll över varje krav som ställs.</p>
+    </details>
+    <details class="faq reveal">
+      <summary>Vilka fakturor kan granskas?</summary>
+      <p>Digitala PDF-fakturor för import till EU, upp till tre år gamla. Har ni bara inskannade kopior — hör av er, så tittar vi på det.</p>
+    </details>
+    <details class="faq reveal">
+      <summary>Hur lång tid tar en provgranskning?</summary>
+      <p>Ni får svar inom 48 timmar: en rapport där varje vara fått en dom (grön, gul eller röd), vilka fel vi hittat och hur mycket pengar det kan handla om.</p>
+    </details>
+    <details class="faq reveal">
+      <summary>Hur säkra är era siffror?</summary>
+      <p>Varje belopp anges som en möjlig återbetalning och verifieras mot importdeklarationen innan något krav ställs. Vi lovar aldrig pengar vi inte kan belägga — det är hela poängen med tjänsten.</p>
+    </details>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="container center">
+    <h2 class="reveal">Nyfiken på vad som gömmer sig i era fakturor?</h2>
+    <p class="lead reveal">Skicka tre fakturor. Vi visar vad vi hittar — kostnadsfritt.</p>
+    <a href="mailto:romeo.roudneshin@gmail.com?subject=Provgranskning%20%E2%80%94%20Tullsyn&body=Hej!%0A%0AVi%20vill%20testa%20en%20kostnadsfri%20provgranskning.%0A%0AF%C3%B6retag:%20%0AKontaktperson:%20%0A" class="btn btn-dark reveal">Skicka 3 fakturor gratis</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span class="wordmark">TULLSYN</span>
+    <span>Automatiserad tullgranskning mot EU:s tulltaxa</span>
+    <a href="mailto:romeo.roudneshin@gmail.com">romeo.roudneshin@gmail.com</a>
+    <span>© Tullsyn 2026</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
