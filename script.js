@@ -1,8 +1,10 @@
-// Tullsyn — landningssidans animationer
-// Tre delar: scroll-intoning, uppräknande siffror och hero-demon.
-// Allt är byggt med webbläsarens inbyggda verktyg — inga bibliotek.
+// Tullsyn — mörka sidans animationer
+// Fyra delar: scroll-intoning, uppräknande siffror, hero-demon och
+// nätverksvisualiseringen (canvas). Inga bibliotek — bara webbläsaren.
 
-// --- 1. Scroll-intoning: element med .reveal tonas in när de blir synliga ---
+const reduceradRorelse = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// --- 1. Scroll-intoning ---
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -16,10 +18,11 @@ const revealObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-// --- 2. Uppräknande siffror: räknar från 0 när de scrollas fram ---
+// --- 2. Uppräknande siffror ---
 function raknaUpp(el) {
   const mal = parseInt(el.dataset.count, 10);
   const suffix = el.dataset.suffix || "";
+  if (reduceradRorelse) { el.textContent = mal + suffix; return; }
   const start = performance.now();
   const tid = 1400;
 
@@ -45,7 +48,7 @@ const statObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".stat-value[data-count]").forEach((el) => statObserver.observe(el));
 
-// --- 3. Hero-demon: fakturarader granskas, domar landar, summan räknas upp ---
+// --- 3. Hero-demon: rader granskas, domar landar, summan räknas upp ---
 const demoRader = [
   { namn: "Elektronikkort, PCB", farg: "var(--gron)", dom: "godkänd" },
   { namn: "Polypropylengranulat", farg: "var(--gron)", dom: "godkänd" },
@@ -82,7 +85,9 @@ function korDemo() {
       const rad = demoRader[i];
       div.classList.add("visible");
       setTimeout(() => {
-        div.querySelector(".demo-dot").style.background = rad.farg;
+        const dot = div.querySelector(".demo-dot");
+        dot.style.background = rad.farg;
+        dot.style.boxShadow = "0 0 10px " + rad.farg;
         div.querySelector(".demo-verdict").textContent = rad.dom;
       }, 380);
       i++;
@@ -103,7 +108,6 @@ function korDemo() {
     if (p < 1) {
       requestAnimationFrame(raknaSumma);
     } else {
-      // Paus, sedan börjar demon om från början
       setTimeout(() => {
         sumStart = null;
         demoSum.textContent = "0,00 kr";
@@ -116,4 +120,86 @@ function korDemo() {
   setTimeout(nastaRad, 600);
 }
 
-korDemo();
+if (reduceradRorelse && demoHost) {
+  // Utan rörelse: visa slutläget direkt
+  demoRader.forEach((rad) => {
+    const div = document.createElement("div");
+    div.className = "demo-row visible";
+    div.innerHTML =
+      '<span class="demo-dot" style="background:' + rad.farg + '"></span>' +
+      '<span class="demo-name">' + rad.namn + "</span>" +
+      '<span class="demo-verdict">' + rad.dom + "</span>";
+    demoHost.appendChild(div);
+  });
+  demoSum.textContent = "219,70 kr";
+  demoStatus.textContent = "5 av 5 granskade";
+} else {
+  korDemo();
+}
+
+// --- 4. Nätverksvisualisering i heron (à la inspirationen) ---
+// Noder som driver långsamt och binds ihop med linjer när de är nära —
+// en visuell metafor för fakturarader som kopplas mot tulltaxan.
+const canvas = document.getElementById("natverk");
+if (canvas && !reduceradRorelse) {
+  const ctx = canvas.getContext("2d");
+  let noder = [];
+  let bredd, hojd;
+
+  function storlek() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    bredd = canvas.width = rect.width;
+    hojd = canvas.height = rect.height;
+  }
+
+  function skapaNoder() {
+    const antal = Math.min(55, Math.floor(bredd / 26));
+    noder = Array.from({ length: antal }, () => ({
+      x: Math.random() * bredd,
+      y: Math.random() * hojd,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      r: 1 + Math.random() * 1.8,
+    }));
+  }
+
+  function rita() {
+    ctx.clearRect(0, 0, bredd, hojd);
+
+    for (const n of noder) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > bredd) n.vx *= -1;
+      if (n.y < 0 || n.y > hojd) n.vy *= -1;
+    }
+
+    for (let a = 0; a < noder.length; a++) {
+      for (let b = a + 1; b < noder.length; b++) {
+        const dx = noder[a].x - noder[b].x;
+        const dy = noder[a].y - noder[b].y;
+        const avstand = Math.hypot(dx, dy);
+        if (avstand < 130) {
+          ctx.strokeStyle = "rgba(47, 208, 140, " + (0.14 * (1 - avstand / 130)) + ")";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(noder[a].x, noder[a].y);
+          ctx.lineTo(noder[b].x, noder[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (const n of noder) {
+      ctx.fillStyle = "rgba(147, 166, 187, 0.5)";
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(rita);
+  }
+
+  storlek();
+  skapaNoder();
+  rita();
+  window.addEventListener("resize", () => { storlek(); skapaNoder(); });
+}
