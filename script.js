@@ -77,7 +77,13 @@ function korDemo() {
   });
 
   let i = 0;
-  const malBelopp = 21970; // 219,70 kr i ören — undviker decimalfel
+  // 6 240 kr — realistisk möjlig återbetalning för en faktura där en av
+  // fem varurader visar sig felklassificerad. Räknas i ören mot decimalfel.
+  const malBelopp = 624000;
+  const kronFormat = new Intl.NumberFormat("sv-SE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
   function nastaRad() {
     if (i < divs.length) {
@@ -104,7 +110,7 @@ function korDemo() {
     const p = Math.min((nu - sumStart) / 1500, 1);
     const easing = 1 - Math.pow(1 - p, 3);
     const oren = Math.round(malBelopp * easing);
-    demoSum.textContent = (oren / 100).toFixed(2).replace(".", ",") + " kr";
+    demoSum.textContent = kronFormat.format(oren / 100) + " kr";
     if (p < 1) {
       requestAnimationFrame(raknaSumma);
     } else {
@@ -131,7 +137,7 @@ if (reduceradRorelse && demoHost) {
       '<span class="demo-verdict">' + rad.dom + "</span>";
     demoHost.appendChild(div);
   });
-  demoSum.textContent = "219,70 kr";
+  demoSum.textContent = "6 240,00 kr";
   demoStatus.textContent = "5 av 5 granskade";
 } else {
   korDemo();
